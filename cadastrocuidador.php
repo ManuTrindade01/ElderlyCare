@@ -5,7 +5,7 @@ $mensagem = "";
 $mensagemTipo = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $status = $_POST['status'];
+    $status = $_POST['statusCuidador'];
     $nomeCompleto = $_POST['nomeCompleto'];
     $CPF = $_POST['CPF'];
     $dataNascimento = $_POST['dataNascimento'];
@@ -25,8 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $declaracaoVacina = $_POST['declaracaoVacina'];
 
 
-        $sql = "INSERT INTO cuidador (status, nomeCompleto, CPF, dataNascimento, CEP, cidade, UF, bairro, rua, numero, complemento, certificado, descricao, horarioInicialDisp, horarioFinalDisp, foto, antecedentesCriminais, declaracaoVacina)
-                VALUES ('$status', '$nomeCompleto', '$CPF', '$dataNascimento', '$CEP', '$cidade', '$UF', '$bairro', '$rua', '$numero', '$complemento', '$certificado', '$descricao', '$horarioInicialDisp', '$horarioFinalDisp', '$foto', '$antecedentesCriminais, '$declaracaoVacina')";
+        $sql = "INSERT INTO cuidador (statusCuidador, nomeCompleto, CPF, dataNascimento, CEP, cidade, UF, bairro, rua, numero, complemento, certificado, descricao, horarioInicialDisp, horarioFinalDisp, foto, antecedentesCriminais, declaracaoVacina)
+                VALUES ('$statusCuidador', '$nomeCompleto', '$CPF', '$dataNascimento', '$CEP', '$cidade', '$UF', '$bairro', '$rua', '$numero', '$complemento', '$certificado', '$descricao', '$horarioInicialDisp', '$horarioFinalDisp', '$foto', '$antecedentesCriminais, '$declaracaoVacina')";
 
         if (mysqli_query($conn, $sql)) {
             $mensagem = "Cuidador cadastrado com sucesso!";
@@ -63,13 +63,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="text" name="nomeCompleto" placeholder="Digite seu nome" required><br>
 
             <label for="cpf">CPF:</label><br>
-            <input type="cpf" name="cpf" placeholder="CPF" required><br>
+            <input type="cpf" name="cpf" placeholder="CPF" required><br> <br>
             
             <label for="dataNascimento">Data de Nascimento:</label><br>
             <input type="date" name="dataNascimento" placeholder="Data de Nascimento" required><br>
 
             <label for="CEP">CEP:</label><br>
-            <input type="text" name="senha2" placeholder="Repita sua senha" required><br>
+            <input type="CEP" name="CEP" placeholder="Repita sua senha" required><br>
 
             <input type="submit" class="cadastrar" value="Cadastrar">
         </form>
