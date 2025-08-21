@@ -53,10 +53,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="container">
         <h2>Cadastro de Cuidador</h2>
         <form method="POST" action="">
-            <label for="status">Status:</label><br>
-            <input type="radio" id="ativo" name="status" value="ativo">
+            <label for="statusCuidador">Status:</label><br>
+            <input type="radio" id="ativo" name="statusCuidador" value="ativo">
             <label for="status">Ativo</label><br>
-            <input type="status" id="inativo" name="status" value="inativo">
+            <input type="status" id="inativo" name="statusCuidador" value="inativo">
             <label for="status">Inativo</label><br>
 
             <label for="nomeCompleto">Nome Completo:</label><br>
@@ -70,6 +70,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <label for="CEP">CEP:</label><br>
             <input type="CEP" name="CEP" placeholder="Repita sua senha" required><br>
+
+            <label for="cidade">Cidade:</label><br>
+            <input type="cidade" name="cidade" placeholder="Cidade" required><br>
+
+            <label for="UF">UF:</label><br>
+            <input type="UF" name="UF" placeholder="UF" required><br>
+
+            <label for="bairro">Bairro:</label><br>
+            <input type="bairro" name="bairro" placeholder="bairro" required><br>
+
+            <label for="rua">Rua:</label><br>
+            <input type="rua" name="rua" placeholder="rua" required><br>
 
             <input type="submit" class="cadastrar" value="Cadastrar">
         </form>
