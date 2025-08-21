@@ -25,17 +25,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $declaracaoVacina = $_POST['declaracaoVacina'];
 
 
-        $sql = "INSERT INTO cuidador (statusCuidador, nomeCompleto, CPF, dataNascimento, CEP, cidade, UF, bairro, rua, numero, complemento, certificado, descricao, horarioInicialDisp, horarioFinalDisp, foto, antecedentesCriminais, declaracaoVacina)
+    $sql = "INSERT INTO cuidador (statusCuidador, nomeCompleto, CPF, dataNascimento, CEP, cidade, UF, bairro, rua, numero, complemento, certificado, descricao, horarioInicialDisp, horarioFinalDisp, foto, antecedentesCriminais, declaracaoVacina)
                 VALUES ('$statusCuidador', '$nomeCompleto', '$CPF', '$dataNascimento', '$CEP', '$cidade', '$UF', '$bairro', '$rua', '$numero', '$complemento', '$certificado', '$descricao', '$horarioInicialDisp', '$horarioFinalDisp', '$foto', '$antecedentesCriminais, '$declaracaoVacina')";
 
-        if (mysqli_query($conn, $sql)) {
-            $mensagem = "Cuidador cadastrado com sucesso!";
-            $mensagemTipo = "sucesso";
-            header("refresh:2;url=index.php");
-        } else {
-            $mensagem = "Erro ao cadastrar: " . mysqli_error($conn);
-            $mensagemTipo = "erro";
-        }
+    if (mysqli_query($conn, $sql)) {
+        $mensagem = "Cuidador cadastrado com sucesso!";
+        $mensagemTipo = "sucesso";
+        header("refresh:2;url=index.php");
+    } else {
+        $mensagem = "Erro ao cadastrar: " . mysqli_error($conn);
+        $mensagemTipo = "erro";
+    }
 
     mysqli_close($conn);
 }
@@ -52,47 +52,84 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <div class="container">
         <h2>Cadastro de Cuidador</h2>
-        <form method="POST" action="">
+        <form method="POST" action="" enctype="multipart/form-data">
             <label for="statusCuidador">Status:</label><br>
-            <input type="radio" id="ativo" name="statusCuidador" value="ativo">
-            <label for="status">Ativo</label><br>
-            <input type="status" id="inativo" name="statusCuidador" value="inativo">
-            <label for="status">Inativo</label><br>
+            <div class="radio-group">
+                <input type="radio" id="ativo" name="statusCuidador" value="ativo">
+                <label for="ativo">Ativo</label>
+                <input type="radio" id="inativo" name="statusCuidador" value="inativo">
+                <label for="inativo">Inativo</label>
+            </div>
 
-            <label for="nomeCompleto">Nome Completo:</label><br>
-            <input type="text" name="nomeCompleto" placeholder="Digite seu nome" required><br>
+            <label for="nomeCompleto">Nome Completo:</label>
+            <input type="text" name="nomeCompleto" required>
 
-            <label for="cpf">CPF:</label><br>
-            <input type="cpf" name="cpf" placeholder="CPF" required><br> <br>
-            
-            <label for="dataNascimento">Data de Nascimento:</label><br>
-            <input type="date" name="dataNascimento" placeholder="Data de Nascimento" required><br>
+            <label for="CPF">CPF:</label>
+            <input type="text" name="CPF" required>
 
-            <label for="CEP">CEP:</label><br>
-            <input type="CEP" name="CEP" placeholder="Repita sua senha" required><br>
+            <label for="dataNascimento">Data de Nascimento:</label>
+            <input type="date" name="dataNascimento" required>
 
-            <label for="cidade">Cidade:</label><br>
-            <input type="cidade" name="cidade" placeholder="Cidade" required><br>
+            <label for="CEP">CEP:</label>
+            <input type="text" name="CEP" required>
 
-            <label for="UF">UF:</label><br>
-            <input type="UF" name="UF" placeholder="UF" required><br>
+            <div class="linha-inputs">
+                <div class="campo">
+                    <label for="cidade">Cidade:</label>
+                    <input type="text" name="cidade" required>
+                </div>
+                <div class="campo">
+                    <label for="UF">UF:</label>
+                    <input type="text" name="UF" required>
+                </div>
+            </div>
 
-            <label for="bairro">Bairro:</label><br>
-            <input type="bairro" name="bairro" placeholder="bairro" required><br>
+            <label for="bairro">Bairro:</label>
+            <input type="text" name="bairro" required>
 
-            <label for="rua">Rua:</label><br>
-            <input type="rua" name="rua" placeholder="rua" required><br>
+            <div class="linha-inputs">
+                <div class="campo">
+                    <label for="rua">Rua:</label>
+                    <input type="text" name="rua" required>
+                </div>
+                <div class="campo">
+                    <label for="numero">Número:</label>
+                    <input type="text" name="numero" required>
+                </div>
+            </div>
+
+            <label for="complemento">Complemento:</label>
+            <input type="text" name="complemento">
+
+            <label for="certificado">Certificado:</label>
+            <input type="file" name="certificado" accept=".pdf" required>
+
+            <label for="descricao">Descrição:</label>
+            <input type="text" name="descricao" required>
+
+            <label for="horarioInicialDisp">Horário Inicial Disponível:</label>
+            <input type="time" name="horarioInicialDisp" required>
+
+            <label for="horarioFinalDisp">Horário Final Disponível:</label>
+            <input type="time" name="horarioFinalDisp" required>
+
+            <label for="foto">Foto:</label>
+            <input type="file" name="foto" accept="image/*" required>
+
+            <label for="antecedentesCriminais">Antecedentes Criminais:</label>
+            <input type="file" name="antecedentesCriminais" required>
+
+            <label for="declaracaoVacina">Declaração de Vacinas:</label>
+            <input type="file" name="declaracaoVacina">
 
             <input type="submit" class="cadastrar" value="Cadastrar">
         </form>
 
-        <div class="mensagem <?php echo $mensagemTipo; ?>" id="mensagem-box">
-            <?php echo $mensagem; ?>
+        <div class="mensagem sucesso" id="mensagem-box">
         </div>
     </div>
 
     <script>
-        // Exibe mensagem se existir
         const msgBox = document.getElementById('mensagem-box');
         if (msgBox.textContent.trim() !== '') {
             msgBox.style.display = 'block';
