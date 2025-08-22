@@ -29,34 +29,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $limitacoesFisicas = $_POST['limitacoesFisicas'];
     $descricao = $_POST['descricao'];
 
-	if ($senha === "" && $senha2 === "") {
-		$sql2 = "UPDATE usuarios SET nome='$nome', email='$email' WHERE codusuario='$id'";
+		$sql2 = "UPDATE idoso SET statusidoso='$statusidoso', nomeCompleto='$nomeCompleto', CPF='$CPF', dataNascimento='$dataNascimento', CEP='$CEP', cidade='$cidade', UF='$UF', bairro='$bairro', rua='$rua', numero='$numero', complemento='$complemento', limitacoesFisicas='$limitacoesFisicas', descricao='$descricao' WHERE ididoso='$ididoso'";
 		if (mysqli_query($conn, $sql2)) {
 			$mensagem = "Usuário alterado com sucesso!";
 			$mensagemTipo = "sucesso";
 		} else {
-			$mensagem = "Erro ao atualizar usuário: " . mysqli_error($conn);
-			$mensagemTipo = "erro";
-		}
-	} else {
-		if ($senha === $senha2) {
-			$sql2 = "UPDATE usuarios SET nome='$nome', email='$email', senha='$senha' WHERE codusuario='$id'";
-			if (mysqli_query($conn, $sql2)) {
-				$mensagem = "Usuário e senha alterados com sucesso!";
-				$mensagemTipo = "sucesso";
-			} else {
-				$mensagem = "Erro ao atualizar com senha: " . mysqli_error($conn);
-				$mensagemTipo = "erro";
-			}
-		} else {
-			$mensagem = "As senhas não coincidem!";
+			$mensagem = "Erro ao atualizar idoso: " . mysqli_error($conn);
 			$mensagemTipo = "erro";
 		}
 	}
-}
 
 // Pega os dados do usuário para preencher o formulário
-$sql = "SELECT * FROM usuarios WHERE codusuario='$id'";
+$sql = "SELECT * FROM idoso WHERE ididoso='$ididoso'";
 $resultado = mysqli_query($conn, $sql);
 $linha = mysqli_fetch_assoc($resultado);
 ?>
