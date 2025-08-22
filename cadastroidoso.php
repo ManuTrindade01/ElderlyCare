@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $limitacoesFisicas = $_POST['limitacoesFisicas'];
     $descricao = $_POST['descricao'];
 
-    
+
 
         $sql = "INSERT INTO idoso (statusidoso, nomeCompleto, CPF, dataNascimento, CEP, cidade, UF, bairro, rua, numero, complemento, limitacoesFisicas, descricao)
                 VALUES ('$statusidoso', '$nomeCompleto', '$CPF', '$dataNascimento', '$CEP', '$cidade', '$UF', '$bairro', '$rua', '$numero', '$complemento', '$limitacoesFisicas', '$descricao')";
@@ -51,10 +51,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <form action="" method="post">
             <label for="statusidoso">Status do Idoso</label>
             <div class="radio-group">
-    <input type="radio" id="ativo" name="statusidoso" value="ativo">
+    <input type="radio" id="ativo" name="statusidoso" value="1">
     <label for="ativo">Ativo</label>
 
-    <input type="radio" id="inativo" name="statusidoso" value="inativo">
+    <input type="radio" id="inativo" name="statusidoso" value="2">
     <label for="inativo">Inativo</label>
 </div>
 

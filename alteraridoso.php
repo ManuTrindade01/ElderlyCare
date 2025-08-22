@@ -49,7 +49,7 @@ $linha = mysqli_fetch_assoc($resultado);
 <html lang="pt-br">
 
 <head>
-	<title>Alterar Usuário</title>
+	<title>Alterar Idoso</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/cadastro.css">
@@ -57,23 +57,55 @@ $linha = mysqli_fetch_assoc($resultado);
 
 <body>
 	<div class="container">
-		<form method="POST" action="">
-			<h2>Alterar Usuário</h2>
+		
+		<label for="statusidoso">Status do Idoso</label>
+            <div class="radio-group">
+    <input type="radio" id="ativo" name="statusidoso" value="1" required value="<?php echo $linha['statusidoso']; ?>">
+    <label for="ativo">Ativo</label>
 
-			<label for="nome">Nome:</label><br>
-			<input type="text" name="nome" placeholder="Digite seu nome" required value="<?php echo $linha['nome']; ?>"><br>
+    <input type="radio" id="inativo" name="statusidoso" value="2" required value="<?php echo $linha['statusidoso']; ?>>
+    <label for="inativo">Inativo</label>
+</div>
 
-			<label for="email">E-mail:</label><br>
-			<input type="email" name="email" placeholder="Digite seu e-mail" required value="<?php echo $linha['email']; ?>"><br>
+            <label for="nomeCompleto">Nome Completo</label>
+            <input type="text" name="nomeCompleto" required value="<?php echo $linha['nomeCompleto']; ?>">
 
-			<label for="senha">Senha:</label><br>
-			<input type="password" name="senha" placeholder="Digite sua nova senha (opcional)"><br>
+            <label for="CPF">CPF</label>
+            <input type="text" name="CPF" required value="<?php echo $linha['CPF']; ?>">
 
-			<label for="senha2">Repita a Senha:</label><br>
-			<input type="password" name="senha2" placeholder="Repita sua nova senha"><br>
+            <label for="dataNascimento">Data de Nascimento</label>
+            <input type="date" name="dataNascimento" required value="<?php echo $linha['dataNascimento']; ?>">
 
-			<input type="submit" class="cadastrar" value="Salvar">
-		</form>
+            <label for="CEP">CEP</label>
+            <input type="text" name="CEP" required value="<?php echo $linha['CEP']; ?>">
+
+            <label for="cidade">Cidade</label>
+            <input type="text" name="cidade" required value="<?php echo $linha['cidade']; ?>">
+
+            <label for="UF">UF</label>
+            <input type="text" name="UF" required value="<?php echo $linha['UF']; ?>">
+
+            <label for="bairro">Bairro</label>
+            <input type="text" name="bairro" required value="<?php echo $linha['bairro']; ?>">
+
+            <label for="rua">Rua</label>
+            <input type="text" name="rua" required value="<?php echo $linha['rua']; ?>">
+
+            <label for="numero">Número</label>
+            <input type="text" name="numero" required value="<?php echo $linha['numero']; ?>">
+
+            <label for="complemento">Complemento</label>
+            <input type="text" name="complemento" required value="<?php echo $linha['complemento']; ?>">
+
+            <label for="limitacoesFisicas">Limitações Físicas</label>
+            <input type="text" name="limitacoesFisicas" required value="<?php echo $linha['limitacoesFisicas']; ?>">
+
+            <label for="descricao">Descrição</label>
+            <input type="text" name="descricao" required value="<?php echo $linha['descricao']; ?>">
+
+            <button type="submit" class="cadastrar">Salvar</button>
+        </form>
+
 
 		<div class="mensagem <?php echo $mensagemTipo; ?>" id="mensagem-box">
 			<?php echo $mensagem; ?>
