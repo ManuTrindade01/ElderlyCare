@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 08/08/2025 às 03:31
+-- Tempo de geração: 22/08/2025 às 03:28
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -95,7 +95,7 @@ CREATE TABLE `cuidador` (
 
 CREATE TABLE `idoso` (
   `ididoso` int(5) NOT NULL,
-  `status` int(1) NOT NULL,
+  `statusidoso` int(1) NOT NULL,
   `nomeCompleto` varchar(200) NOT NULL,
   `CPF` varchar(20) NOT NULL,
   `dataNascimento` varchar(200) NOT NULL,
@@ -109,6 +109,15 @@ CREATE TABLE `idoso` (
   `limitacoesFisicas` varchar(45) NOT NULL,
   `descricao` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `idoso`
+--
+
+INSERT INTO `idoso` (`ididoso`, `statusidoso`, `nomeCompleto`, `CPF`, `dataNascimento`, `CEP`, `cidade`, `UF`, `bairro`, `rua`, `numero`, `complemento`, `limitacoesFisicas`, `descricao`) VALUES
+(1, 0, 'Emanuely ', '08167408957', '2025-06-01', '87565000', 'Cafezal', 'PR', 'CENTRO', 'ARGENTINA', '561', 'CASA', 'Não tem ', 'HYDFHD'),
+(2, 0, 'Emanuely ', '08167408957', '2005-06-01', '87565000', 'Cafezal', 'PR', 'CENTRO', 'ARGENTINA', '561', 'CASA', 'Não tem ', 'HYDFHD'),
+(3, 1, 'Emanuely ', '08167408957', '2005-06-01', '87565000', 'Cafezal', 'PR', 'CENTRO', 'ARGENTINA', '561', 'CASA', 'Não tem ', 'HYDFHD');
 
 -- --------------------------------------------------------
 
@@ -199,7 +208,7 @@ ALTER TABLE `cuidador`
 -- AUTO_INCREMENT de tabela `idoso`
 --
 ALTER TABLE `idoso`
-  MODIFY `ididoso` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `ididoso` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `responsavel`
