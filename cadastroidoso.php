@@ -19,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $limitacoesFisicas = $_POST['limitacoesFisicas'];
     $descricao = $_POST['descricao'];
 
+    
 
         $sql = "INSERT INTO idoso (statusidoso, nomeCompleto, CPF, dataNascimento, CEP, cidade, UF, bairro, rua, numero, complemento, limitacoesFisicas, descricao)
                 VALUES ('$statusidoso', '$nomeCompleto', '$CPF', '$dataNascimento', '$CEP', '$cidade', '$UF', '$bairro', '$rua', '$numero', '$complemento', '$limitacoesFisicas', '$descricao')";
