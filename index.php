@@ -17,7 +17,7 @@
           <li><a href="#hero" class="active">Home</a></li>
           <li><a href="#about">Sobre</a></li>
           <li><a href="cadastroidoso.php">Cadastro de Idoso</a></li>
-          <li><a href="cadastroidoso.php">Cadastro de Cuidador</a></li>
+          <li><a href="cadastrocuidador.php">Cadastro de Cuidador</a></li>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 

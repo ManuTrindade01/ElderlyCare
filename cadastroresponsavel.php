@@ -1,112 +1,119 @@
 <?php
 include('conexao.php');
 
+$sql_idosos = "SELECT ididoso, nomeCompleto FROM idoso ORDER BY nomeCompleto ASC";
+$result_idosos = mysqli_query($conn, $sql_idosos);
+
 $mensagem = "";
 $mensagemTipo = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $statusresponsavel = 1;
+    $ididoso = $_POST['ididoso'];
     $nomeCompleto = $_POST['nomeCompleto'];
     $CPF = $_POST['CPF'];
     $dataNascimento = $_POST['dataNascimento'];
     $CEP = $_POST['CEP'];
     $cidade = $_POST['cidade'];
-    $UF = $_POST ['UF'];
+    $UF = $_POST['UF'];
     $bairro = $_POST['bairro'];
     $rua = $_POST['rua'];
     $numero = $_POST['numero'];
     $complemento = $_POST['complemento'];
 
+    $sql = "INSERT INTO responsavel 
+            (statusresponsavel, ididoso, nomeCompleto, CPF, dataNascimento, CEP, cidade, UF, bairro, rua, numero, complemento)
+            VALUES ('$statusresponsavel', '$ididoso', '$nomeCompleto', '$CPF', '$dataNascimento', '$CEP', '$cidade', '$UF', '$bairro', '$rua', '$numero', '$complemento')";
 
-
-        $sql = "INSERT INTO responsavel (statusresponsavel, nomeCompleto, CPF, dataNascimento, CEP, cidade, UF, bairro, rua, numero, complemento)
-                VALUES ('$statusresponsavel', '$nomeCompleto', '$CPF', '$dataNascimento', '$CEP', '$cidade', '$UF', '$bairro', '$rua', '$numero', '$complemento')";
-
-        if (mysqli_query($conn, $sql)) {
-            $mensagem = "Idoso cadastrado com sucesso!";
-            $mensagemTipo = "sucesso";
-            header("refresh:2;url=index.php");
-        } else {
-            $mensagem = "Erro ao cadastrar: " . mysqli_error($conn);
-            $mensagemTipo = "erro";
-        }
-
-    mysqli_close($conn);
+    if (mysqli_query($conn, $sql)) {
+        $mensagem = "Responsável cadastrado com sucesso!";
+        $mensagemTipo = "sucesso";
+        header("refresh:2;url=index.php");
+    } else {
+        $mensagem = "Erro ao cadastrar: " . mysqli_error($conn);
+        $mensagemTipo = "erro";
     }
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Idoso</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-     <link rel="stylesheet" href="assets/css/cadastro.css">
+    <title>Cadastro de Responsável</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/cadastro.css">
 </head>
+
 <body>
-<div class="container">
-        <h2>Cadastro de Idoso</h2>
+    <div class="container">
+        <h2>Cadastro de Responsável</h2>
         <form action="" method="post" class="">
             <div class="row">
-            <div class="col">
-            <label for="nomeCompleto">Nome Completo</label>
-            <input type="text" name="nomeCompleto" required>
-            </div>
-            </div>
-            <div class="row">
-            <div class="col">
-            <label for="CPF">CPF</label>
-            <input type="text" name="CPF" required pattern="\d{3}\.?\d{3}\.?\d{3}-?\d{2}">
-            </div>
-            <div class="col">
-            <label for="dataNascimento">Data de Nascimento</label>
-            <input type="date" name="dataNascimento" required>
-            </div>
+                <div class="col">
+                    <label for="nomeCompleto">Nome Completo</label>
+                    <input type="text" name="nomeCompleto" required>
+                </div>
             </div>
             <div class="row">
-            <div class="col-3">
-            <label for="CEP">CEP</label>
-            <input type="text" name="CEP" required>
-            </div>
-            <div class="col">
-            <label for="cidade">Cidade</label>
-            <input type="text" name="cidade" required>
-            </div>
-            <div class="col-3">
-            <label for="UF">UF</label>
-            <input type="text" name="UF" required>
-            </div>
+                <div class="col">
+                    <label for="CPF">CPF</label>
+                    <input type="text" name="CPF" required pattern="\d{3}\.?\d{3}\.?\d{3}-?\d{2}">
+                </div>
+                <div class="col">
+                    <label for="dataNascimento">Data de Nascimento</label>
+                    <input type="date" name="dataNascimento" required>
+                </div>
             </div>
             <div class="row">
-            <div class="col-5">
-            <label for="bairro">Bairro</label>
-            <input type="text" name="bairro" required>
-            </div>
-            <div class="col-5">
-            <label for="rua">Rua</label>
-            <input type="text" name="rua" required>
-            </div>
-            <div class="col-2">
-            <label for="numero">Número</label>
-            <input type="text" name="numero" required>
-            </div>
+                <div class="col-3">
+                    <label for="CEP">CEP</label>
+                    <input type="text" name="CEP" required>
+                </div>
+                <div class="col">
+                    <label for="cidade">Cidade</label>
+                    <input type="text" name="cidade" required>
+                </div>
+                <div class="col-3">
+                    <label for="UF">UF</label>
+                    <input type="text" name="UF" required>
+                </div>
             </div>
             <div class="row">
-            <div class="col">
-            <label for="complemento">Complemento</label>
-            <input type="text" name="complemento">
+                <div class="col-5">
+                    <label for="bairro">Bairro</label>
+                    <input type="text" name="bairro" required>
+                </div>
+                <div class="col-5">
+                    <label for="rua">Rua</label>
+                    <input type="text" name="rua" required>
+                </div>
+                <div class="col-2">
+                    <label for="numero">Número</label>
+                    <input type="text" name="numero" required>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="complemento">Complemento</label>
+                        <input type="text" name="complemento">
+                    </div>
+                    <div class="col">
+                        <label for="idoso">Selecionar Idoso</label>
+                        <select name="ididoso" required class="form-select">
+                            <option value="" selected>Selecione...</option>
+                            <?php while ($dados = mysqli_fetch_assoc($result_idosos)) { ?>
+                                <option value="<?php echo $dados['ididoso']; ?>">
+                                    <?php echo $dados['nomeCompleto']; ?>
+                                </option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
             </div>
-            <div class="col">
-            <label for="limitacoesFisicas">Limitações Físicas</label>
-            <input type="text" name="limitacoesFisicas">
-            </div>
-            <div class="col">
-            <label for="descricao">Descrição</label>
-            <input type="text" name="descricao">
-            </div>
-            </div>
-
             <button type="submit" class="cadastrar">Cadastrar</button>
         </form>
 
@@ -118,4 +125,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 
 </body>
+
 </html>
