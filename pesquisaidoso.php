@@ -122,10 +122,10 @@ $selecao = isset($_GET['selecao']) ? $_GET['selecao'] : null;
    
     /* início do mostrar todos */
     if ($selecao == "0") { ?>
-        <h3><a href="pesquisausuario.php?selecao=1">Esconder</a></h3>
+        <h3><a href="pesquisaidoso.php?selecao=1">Esconder</a></h3>
         <?php
         include('conexao.php');
-        $sql = "SELECT * FROM usuarios";
+        $sql = "SELECT * FROM idoso";
         $resultado = mysqli_query($conn, $sql);
         ?>
         <div>
@@ -133,7 +133,7 @@ $selecao = isset($_GET['selecao']) ? $_GET['selecao'] : null;
                 <tr>
                     <td>Id</td>
                     <td>Nome</td>
-                    <td>Email</td>
+                    <td>Descrição</td>
                     <td class="center">Update</td>
                     <td class="center">Delete</td>
                 </tr>
@@ -144,12 +144,12 @@ $selecao = isset($_GET['selecao']) ? $_GET['selecao'] : null;
                     while ($row = mysqli_fetch_assoc($resultado)) {
                         ?>
                         <tr>
-                            <td><?= $row['codusuario']; ?></td>
-                            <td><?= $row['nome']; ?></td>
-                            <td><?= $row['email']; ?></td>
-                            <td class="center"><a href="alterarusuario.php?id=<?= $row['codusuario']; ?>"><img style="width:30px"
+                            <td><?= $row['ididoso']; ?></td>
+                            <td><?= $row['nomeCompleto']; ?></td>
+                            <td><?= $row['descricao']; ?></td>
+                            <td class="center"><a href="alteraridoso.php?id=<?= $row['ididoso']; ?>"><img style="width:30px"
                                         src="assets/img/edit.png"></a></td>
-                            <td class="center"><a href="apagarusuario.php?id=<?= $row['codusuario']; ?>"><img style="width:30px"
+                            <td class="center"><a href="apagaridoso.php?id=<?= $row['ididoso']; ?>"><img style="width:30px"
                                         src="assets/img/delete.png"></a></td>
                         </tr>
                         <?php
@@ -173,7 +173,7 @@ $selecao = isset($_GET['selecao']) ? $_GET['selecao'] : null;
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
         include('conexao.php');
         $busca = $_POST['pesquisa'];
-        $sql = "SELECT * FROM usuarios WHERE nome LIKE '%$busca%' ORDER BY nome ASC";
+        $sql = "SELECT * FROM idoso WHERE nomeCompleto LIKE '%$busca%' ORDER BY nomeCompleto ASC";
        
         $resultado = mysqli_query($conn, $sql);
         ?>
@@ -182,7 +182,7 @@ $selecao = isset($_GET['selecao']) ? $_GET['selecao'] : null;
                 <tr>
                     <td>Id</td>
                     <td>Nome</td>
-                    <td>Email</td>
+                    <td>Descrição</td>
                     <td class="center">Update</td>
                     <td class="center">Delete</td>
                 </tr>
@@ -193,12 +193,12 @@ $selecao = isset($_GET['selecao']) ? $_GET['selecao'] : null;
                     while ($row = mysqli_fetch_assoc($resultado)) {
                         ?>
                         <tr>
-                            <td><?= $row['codusuario']; ?></td>
-                            <td><?= $row['nome']; ?></td>
-                            <td><?= $row['email']; ?></td>
-                            <td class="center"><a href="alterarusuario.php?id=<?= $row['codusuario']; ?>"><img style="width:30px"
+                            <td><?= $row['ididoso']; ?></td>
+                            <td><?= $row['nomeCompleto']; ?></td>
+                            <td><?= $row['descricao']; ?></td>
+                            <td class="center"><a href="alteraridoso.php?id=<?= $row['ididoso']; ?>"><img style="width:30px"
                                         src="assets/img/edit.png"></a></td>
-                            <td class="center"><a href="apagarusuario.php?id=<?= $row['codusuario']; ?>"><img style="width:30px"
+                            <td class="center"><a href="apagaridoso.php?id=<?= $row['ididoso']; ?>"><img style="width:30px"
                                         src="assets/img/delete.png"></a></td>
                         </tr>
                         <?php

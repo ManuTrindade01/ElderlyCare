@@ -5,7 +5,7 @@ $mensagem = "";
 $mensagemTipo = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $statusidoso = 1;
+    $statusresponsavel = 1;
     $nomeCompleto = $_POST['nomeCompleto'];
     $CPF = $_POST['CPF'];
     $dataNascimento = $_POST['dataNascimento'];
@@ -16,13 +16,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $rua = $_POST['rua'];
     $numero = $_POST['numero'];
     $complemento = $_POST['complemento'];
-    $limitacoesFisicas = $_POST['limitacoesFisicas'];
-    $descricao = $_POST['descricao'];
 
 
 
-        $sql = "INSERT INTO idoso (statusidoso, nomeCompleto, CPF, dataNascimento, CEP, cidade, UF, bairro, rua, numero, complemento, limitacoesFisicas, descricao)
-                VALUES ('$statusidoso', '$nomeCompleto', '$CPF', '$dataNascimento', '$CEP', '$cidade', '$UF', '$bairro', '$rua', '$numero', '$complemento', '$limitacoesFisicas', '$descricao')";
+        $sql = "INSERT INTO responsavel (statusresponsavel, nomeCompleto, CPF, dataNascimento, CEP, cidade, UF, bairro, rua, numero, complemento)
+                VALUES ('$statusresponsavel', '$nomeCompleto', '$CPF', '$dataNascimento', '$CEP', '$cidade', '$UF', '$bairro', '$rua', '$numero', '$complemento')";
 
         if (mysqli_query($conn, $sql)) {
             $mensagem = "Idoso cadastrado com sucesso!";
