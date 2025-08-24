@@ -5,7 +5,7 @@ $mensagem = "";
 $mensagemTipo = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $statusidoso = $_POST['statusidoso'];
+    $statusidoso = 1;
     $nomeCompleto = $_POST['nomeCompleto'];
     $CPF = $_POST['CPF'];
     $dataNascimento = $_POST['dataNascimento'];
@@ -42,57 +42,72 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Usuário</title>
+    <title>Cadastro de Idoso</title>
     <link rel="stylesheet" href="assets/css/cadastro.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 </head>
 <body>
 <div class="container">
         <h2>Cadastro de Idoso</h2>
         <form action="" method="post">
-            <label for="statusidoso">Status do Idoso</label>
-            <div class="radio-group">
-    <input type="radio" id="ativo" name="statusidoso" value="1">
-    <label for="ativo">Ativo</label>
-
-    <input type="radio" id="inativo" name="statusidoso" value="2">
-    <label for="inativo">Inativo</label>
-</div>
-
+            <div class="row">
+            <div class="col">
             <label for="nomeCompleto">Nome Completo</label>
             <input type="text" name="nomeCompleto" required>
-
+            </div>
+            </div>
+            <div class="row">
+            <div class="col">
             <label for="CPF">CPF</label>
-            <input type="text" name="CPF" required>
-
+            <input type="text" name="CPF" required pattern="\d{3}\.?\d{3}\.?\d{3}-?\d{2}">
+            </div>
+            <div class="col">
             <label for="dataNascimento">Data de Nascimento</label>
             <input type="date" name="dataNascimento" required>
-
+            </div>
+            </div>
+            <div class="row">
+            <div class="col-3">
             <label for="CEP">CEP</label>
             <input type="text" name="CEP" required>
-
+            </div>
+            <div class="col">
             <label for="cidade">Cidade</label>
             <input type="text" name="cidade" required>
-
+            </div>
+            <div class="col-3">
             <label for="UF">UF</label>
             <input type="text" name="UF" required>
-
+            </div>
+            </div>
+            <div class="row">
+            <div class="col-5">
             <label for="bairro">Bairro</label>
             <input type="text" name="bairro" required>
-
+            </div>
+            <div class="col-5">
             <label for="rua">Rua</label>
             <input type="text" name="rua" required>
-
+            </div>
+            <div class="col-2">
             <label for="numero">Número</label>
             <input type="text" name="numero" required>
-
+            </div>
+            </div>
+            <div class="row">
+            <div class="col">
             <label for="complemento">Complemento</label>
             <input type="text" name="complemento">
-
+            </div>
+            <div class="col">
             <label for="limitacoesFisicas">Limitações Físicas</label>
             <input type="text" name="limitacoesFisicas">
-
+            </div>
+            <div class="col">
             <label for="descricao">Descrição</label>
             <input type="text" name="descricao">
+            </div>
+            </div>
 
             <button type="submit" class="cadastrar">Cadastrar</button>
         </form>
