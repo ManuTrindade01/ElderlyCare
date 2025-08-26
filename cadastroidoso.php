@@ -1,11 +1,15 @@
 <?php
 include('conexao.php');
 
+$sql_responsavel = "SELECT idresponsavel, nomeCompleto FROM responsavel ORDER BY nomeCompleto ASC";
+$result_responsavel = mysqli_query($conn, $sql_responsavel);
+
 $mensagem = "";
 $mensagemTipo = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $statusidoso = 1;
+    $idresponsavel = $_POST['idresponsavel'];
     $nomeCompleto = $_POST['nomeCompleto'];
     $CPF = $_POST['CPF'];
     $dataNascimento = $_POST['dataNascimento'];
@@ -21,8 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
-        $sql = "INSERT INTO idoso (statusidoso, nomeCompleto, CPF, dataNascimento, CEP, cidade, UF, bairro, rua, numero, complemento, limitacoesFisicas, descricao)
-                VALUES ('$statusidoso', '$nomeCompleto', '$CPF', '$dataNascimento', '$CEP', '$cidade', '$UF', '$bairro', '$rua', '$numero', '$complemento', '$limitacoesFisicas', '$descricao')";
+        $sql = "INSERT INTO idoso (statusidoso, idresponsavel, nomeCompleto, CPF, dataNascimento, CEP, cidade, UF, bairro, rua, numero, complemento, limitacoesFisicas, descricao)
+                VALUES ('$statusidoso', '$idresponsavel', '$nomeCompleto', '$CPF', '$dataNascimento', '$CEP', '$cidade', '$UF', '$bairro', '$rua', '$numero', '$complemento', '$limitacoesFisicas', '$descricao')";
 
         if (mysqli_query($conn, $sql)) {
             $mensagem = "Idoso cadastrado com sucesso!";
@@ -108,7 +112,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="text" name="descricao">
             </div>
             </div>
-
+            <div class="row">
+                <div class="col">
+                        <label for="responsavel">Selecionar Responsável</label>
+                        <select name="idresponsavel" required class="form-select">
+                            <option value="" selected>Selecione...</option>
+                            <?php while ($dados = mysqli_fetch_assoc($result_responsavel)) { ?>
+                                <option value="<?php echo $dados['idresponsavel']; ?>">
+                                    <?php echo $dados['nomeCompleto']; ?>
+                                </option>
+                            <?php } ?>
+                        </select>
+                </div>
+            </div>
+<br>
             <button type="submit" class="cadastrar">Cadastrar</button>
         </form>
 

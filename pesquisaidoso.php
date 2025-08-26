@@ -8,14 +8,14 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f4f0;
+            background-color: #fdf4f1;
             color: #333;
             margin: 0;
             padding: 20px;
         }
 
         h1 {
-            color: #2e7d32;
+            color: #fb745c;
             text-align: center;
             margin-bottom: 30px;
         }
@@ -27,18 +27,20 @@
 
         h3 a {
             text-decoration: none;
-            color: #388e3c;
+            color: #fb745c;
             font-weight: bold;
             padding: 10px 15px;
-            background-color: #e8f5e9;
-            border: 1px solid #c8e6c9;
+            background-color: #ffe4de;
+            border: 1px solid #fbc2b6;
             border-radius: 5px;
             display: inline-block;
             text-align: center;
+            transition: 0.3s ease;
         }
 
         h3 a:hover {
-            background-color: #c8e6c9;
+            background-color: #fbc2b6;
+            color: white;
         }
 
         table {
@@ -62,7 +64,7 @@
         }
 
         table tr:hover {
-            background-color: #f1f8e9;
+            background-color: #fff2ef;
         }
 
         form {
@@ -74,22 +76,23 @@
 
         input[type="text"] {
             padding: 10px;
-            border: 1px solid #cfd8dc;
+            border: 1px solid #f5c6cb;
             border-radius: 4px;
             width: 250px;
         }
 
         input[type="submit"] {
             padding: 10px 20px;
-            background-color: #66bb6a;
+            background-color: #fb745c;
             color: white;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            transition: 0.3s ease;
         }
 
         input[type="submit"]:hover {
-            background-color: #4caf50;
+            background-color: #e35f4b;
         }
 
         img {

@@ -12,12 +12,12 @@
    <?php
    include('conexao.php');
    $id = $_GET['id'];
-   $sql = "DELETE FROM usuarios WHERE codusuario='$id'";
+   $sql = "DELETE FROM idoso WHERE ididoso='$id'";
    if (mysqli_query($conn, $sql)) {
       ?>
       <div class="alert alert-success" role="alert">
-         <h2 style="text-align: center;">Usuário deletado com SUCESSO!</h2>
-         <?php header('refresh:2; url=pesquisausuario.php?selecao=1');  ?>
+         <h2 style="text-align: center;">Idoso deletado com SUCESSO!</h2>
+         <?php header('refresh:2; url=pesquisaidoso.php?selecao=1');  ?>
       </div>
       <?php
    }

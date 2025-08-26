@@ -14,7 +14,7 @@
 					$email = $_POST['email'];//dados do formulário, no input name="email"
 					$senha = $_POST['senha'];
 
-					$sql = "SELECT * FROM usuarios WHERE email='$email' && senha='$senha'";
+					$sql = "SELECT * FROM admin WHERE email='$email' && senha='$senha'";
 
 					$resultado = mysqli_query($conn, $sql);
 					//print_r($resultado); imprime quantidade de linha da seleção
@@ -43,7 +43,6 @@
         <input type="email" placeholder="E-mail" id="email" name="email">
         <input type="password" placeholder="Senha" id="senha" name="senha">
         <button type="submit">Enviar</button>
-		<a href="cadastrousuario.php" style="color: white;">Não tem cadastro?Cadastre-se</a>
     </div>
     </form>
 </body>

@@ -1,8 +1,8 @@
 <?php
 session_start();
 if (!isset($_SESSION['email'])) {
-	header("location: login.php");
-	exit;
+    header("location: login.php");
+    exit;
 }
 
 include('conexao.php');
@@ -15,13 +15,13 @@ $id = intval($_GET['id']); // segurança básica
 
 // Processa o formulário ANTES do HTML
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	$statusidoso = $_POST['statusidoso'];
+    $statusidoso = $_POST['statusidoso'];
     $nomeCompleto = $_POST['nomeCompleto'];
     $CPF = $_POST['CPF'];
     $dataNascimento = $_POST['dataNascimento'];
     $CEP = $_POST['CEP'];
     $cidade = $_POST['cidade'];
-    $UF = $_POST ['UF'];
+    $UF = $_POST['UF'];
     $bairro = $_POST['bairro'];
     $rua = $_POST['rua'];
     $numero = $_POST['numero'];
@@ -29,18 +29,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $limitacoesFisicas = $_POST['limitacoesFisicas'];
     $descricao = $_POST['descricao'];
 
-		$sql2 = "UPDATE idoso SET statusidoso='$statusidoso', nomeCompleto='$nomeCompleto', CPF='$CPF', dataNascimento='$dataNascimento', CEP='$CEP', cidade='$cidade', UF='$UF', bairro='$bairro', rua='$rua', numero='$numero', complemento='$complemento', limitacoesFisicas='$limitacoesFisicas', descricao='$descricao' WHERE ididoso='$ididoso'";
-		if (mysqli_query($conn, $sql2)) {
-			$mensagem = "Usuário alterado com sucesso!";
-			$mensagemTipo = "sucesso";
-		} else {
-			$mensagem = "Erro ao atualizar idoso: " . mysqli_error($conn);
-			$mensagemTipo = "erro";
-		}
-	}
+    $sql2 = "UPDATE idoso 
+            SET statusidoso='$statusidoso', 
+                nomeCompleto='$nomeCompleto', 
+                CPF='$CPF', 
+                dataNascimento='$dataNascimento', 
+                CEP='$CEP', 
+                cidade='$cidade', 
+                UF='$UF', 
+                bairro='$bairro', 
+                rua='$rua', 
+                numero='$numero', 
+                complemento='$complemento', 
+                limitacoesFisicas='$limitacoesFisicas', 
+                descricao='$descricao' 
+            WHERE ididoso='$id'";
+
+    if (mysqli_query($conn, $sql2)) {
+        $mensagem = "Cadastro de idoso alterado com sucesso!";
+        $mensagemTipo = "sucesso";
+    } else {
+        $mensagem = "Erro ao atualizar idoso: " . mysqli_error($conn);
+        $mensagemTipo = "erro";
+    }
+}
 
 // Pega os dados do usuário para preencher o formulário
-$sql = "SELECT * FROM idoso WHERE ididoso='$ididoso'";
+$sql = "SELECT * FROM idoso WHERE ididoso='$id'";
 $resultado = mysqli_query($conn, $sql);
 $linha = mysqli_fetch_assoc($resultado);
 ?>
@@ -49,23 +64,27 @@ $linha = mysqli_fetch_assoc($resultado);
 <html lang="pt-br">
 
 <head>
-	<title>Alterar Idoso</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="assets/css/cadastro.css">
+    <title>Alterar Idoso</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="assets/css/cadastro.css">
 </head>
 
 <body>
-	<div class="container">
-		
-		<label for="statusidoso">Status do Idoso</label>
-            <div class="radio-group">
-    <input type="radio" id="ativo" name="statusidoso" value="1" required value="<?php echo $linha['statusidoso']; ?>">
-    <label for="ativo">Ativo</label>
+    <div class="container">
 
-    <input type="radio" id="inativo" name="statusidoso" value="2" required value="<?php echo $linha['statusidoso']; ?>>
-    <label for="inativo">Inativo</label>
-</div>
+        <form method="POST">
+
+            <label for="statusidoso">Status do Idoso</label>
+            <div class="radio-group">
+                <input type="radio" id="ativo" name="statusidoso" value="1" required
+                    <?php if ($linha['statusidoso'] == 1) echo 'checked'; ?>>
+                <label for="ativo">Ativo</label>
+
+                <input type="radio" id="inativo" name="statusidoso" value="2" required
+                    <?php if ($linha['statusidoso'] == 2) echo 'checked'; ?>>
+                <label for="inativo">Inativo</label>
+            </div>
 
             <label for="nomeCompleto">Nome Completo</label>
             <input type="text" name="nomeCompleto" required value="<?php echo $linha['nomeCompleto']; ?>">
@@ -95,30 +114,29 @@ $linha = mysqli_fetch_assoc($resultado);
             <input type="text" name="numero" required value="<?php echo $linha['numero']; ?>">
 
             <label for="complemento">Complemento</label>
-            <input type="text" name="complemento" required value="<?php echo $linha['complemento']; ?>">
+            <input type="text" name="complemento" value="<?php echo $linha['complemento']; ?>">
 
             <label for="limitacoesFisicas">Limitações Físicas</label>
-            <input type="text" name="limitacoesFisicas" required value="<?php echo $linha['limitacoesFisicas']; ?>">
+            <input type="text" name="limitacoesFisicas" value="<?php echo $linha['limitacoesFisicas']; ?>">
 
             <label for="descricao">Descrição</label>
-            <input type="text" name="descricao" required value="<?php echo $linha['descricao']; ?>">
+            <input type="text" name="descricao" value="<?php echo $linha['descricao']; ?>">
 
             <button type="submit" class="cadastrar">Salvar</button>
         </form>
 
+        <div class="mensagem <?php echo $mensagemTipo; ?>" id="mensagem-box">
+            <?php echo $mensagem; ?>
+        </div>
+    </div>
 
-		<div class="mensagem <?php echo $mensagemTipo; ?>" id="mensagem-box">
-			<?php echo $mensagem; ?>
-		</div>
-	</div>
-
-	<script>
-		// Exibe mensagem se existir
-		const msgBox = document.getElementById('mensagem-box');
-		if (msgBox.textContent.trim() !== '') {
-			msgBox.style.display = 'block';
-		}
-	</script>
+    <script>
+        // Exibe mensagem se existir
+        const msgBox = document.getElementById('mensagem-box');
+        if (msgBox.textContent.trim() !== '') {
+            msgBox.style.display = 'block';
+        }
+    </script>
 </body>
 
 </html>

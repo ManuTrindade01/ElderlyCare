@@ -9,7 +9,6 @@ $mensagemTipo = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $statusresponsavel = 1;
-    $ididoso = $_POST['ididoso'];
     $nomeCompleto = $_POST['nomeCompleto'];
     $CPF = $_POST['CPF'];
     $dataNascimento = $_POST['dataNascimento'];
@@ -22,8 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $complemento = $_POST['complemento'];
 
     $sql = "INSERT INTO responsavel 
-            (statusresponsavel, ididoso, nomeCompleto, CPF, dataNascimento, CEP, cidade, UF, bairro, rua, numero, complemento)
-            VALUES ('$statusresponsavel', '$ididoso', '$nomeCompleto', '$CPF', '$dataNascimento', '$CEP', '$cidade', '$UF', '$bairro', '$rua', '$numero', '$complemento')";
+            (statusresponsavel, nomeCompleto, CPF, dataNascimento, CEP, cidade, UF, bairro, rua, numero, complemento)
+            VALUES ('$statusresponsavel', '$nomeCompleto', '$CPF', '$dataNascimento', '$CEP', '$cidade', '$UF', '$bairro', '$rua', '$numero', '$complemento')";
 
     if (mysqli_query($conn, $sql)) {
         $mensagem = "Responsável cadastrado com sucesso!";
@@ -101,17 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <label for="complemento">Complemento</label>
                         <input type="text" name="complemento">
                     </div>
-                    <div class="col">
-                        <label for="idoso">Selecionar Idoso</label>
-                        <select name="ididoso" required class="form-select">
-                            <option value="" selected>Selecione...</option>
-                            <?php while ($dados = mysqli_fetch_assoc($result_idosos)) { ?>
-                                <option value="<?php echo $dados['ididoso']; ?>">
-                                    <?php echo $dados['nomeCompleto']; ?>
-                                </option>
-                            <?php } ?>
-                        </select>
-                    </div>
+                    
                 </div>
             </div>
             <button type="submit" class="cadastrar">Cadastrar</button>

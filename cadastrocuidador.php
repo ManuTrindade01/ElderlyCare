@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $horarioInicialDisp = $_POST['horarioInicialDisp'];
     $horarioFinalDisp = $_POST['horarioFinalDisp'];
     $foto = $_POST['foto'];
-    $antecedentesCriminais = $_['antecedentesCriminais'];
+    $antecedentesCriminais = $_POST['antecedentesCriminais'];
     $declaracaoVacina = $_POST['declaracaoVacina'];
 
 
@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <input type="text" name="nomeCompleto" required>
                 </div>
             </div>
-            <div class="row"></div>
+            <div class="row">
             <div class="col-6">
                 <label for="CPF">CPF:</label>
                 <input type="text" name="CPF" required>
@@ -71,6 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="col-3">
                 <label for="dataNascimento">Data de Nascimento:</label>
                 <input type="date" name="dataNascimento" required>
+                 </div>
                 <div class="col-3">
                     <label for="CEP">CEP:</label>
                     <input type="text" name="CEP" required>
@@ -105,39 +106,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                 </div>
                 <div class="row">
-                <div class="col">
-                <label for="certificado">Certificado:</label>
-                <input type="file" name="certificado" accept=".pdf" required>
-                </div>
-                <div class="col">
-                <label for="descricao">Descrição:</label>
-                <input type="text" name="descricao" required>
-                </div>
-                </div>
-                <div class="row">
-                <div class="col">
-                <label for="horarioInicialDisp">Horário Inicial Disponível:</label>
-                <input type="time" name="horarioInicialDisp" required>
-                </div>
-                <div class="col">
-                <label for="horarioFinalDisp">Horário Final Disponível:</label>
-                <input type="time" name="horarioFinalDisp" required>
-                </div>
+                    <div class="col">
+                        <label for="certificado">Certificado:</label>
+                        <input type="file" name="certificado" accept=".pdf" required class="form-control">
+                    </div>
+                    <div class="col">
+                        <label for="descricao">Descrição:</label>
+                        <input type="text" name="descricao" required class="form-control">
+                    </div>
                 </div>
                 <div class="row">
-                <div class="col">
-                <label for="foto">Foto:</label>
-                <input type="file" name="foto" class="formFile" accept="image/*" required>
+                    <div class="col">
+                        <label for="horarioInicialDisp">Horário Inicial Disponível:</label>
+                        <input type="time" name="horarioInicialDisp" required class="form-control">
+                    </div>
+                    <div class="col">
+                        <label for="horarioFinalDisp">Horário Final Disponível:</label>
+                        <input type="time" name="horarioFinalDisp" required class="form-control">
+                    </div>
                 </div>
-                <div class="col">
-                <label for="antecedentesCriminais">Antecedentes Criminais:</label>
-                <input type="file" name="antecedentesCriminais" required class="formControl">
-                <div class="col">
-                <label for="declaracaoVacina">Declaração de Vacinas:</label>
-                <input type="file" name="declaracaoVacina" class="formFile">
+                <div class="row">
+                    <div class="col">
+                        <label for="foto">Foto:</label>
+                        <input type="file" name="foto" accept="image/*" required class="form-control">
+                    </div>
+                    <div class="col">
+                        <label for="antecedentesCriminais">Antecedentes Criminais:</label>
+                        <input type="file" name="antecedentesCriminais" required class="form-control">
+                    </div>
+                    <div class="col">
+                        <label for="declaracaoVacina">Declaração de Vacinas:</label>
+                        <input type="file" name="declaracaoVacina" class="form-control">
+                    </div>
                 </div>
-                </div>
-                <input type="submit" class="cadastrar" value="Cadastrar">
+                <input type="submit" class="cadastrar" value="Cadastrar" style="align-items: center">
         </form>
 
         <div class="mensagem sucesso" id="mensagem-box">

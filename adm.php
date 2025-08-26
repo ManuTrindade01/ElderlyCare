@@ -7,9 +7,9 @@
 </head>
 <body>
     <ul>
-        <li><a href="cadastrousuario.php">Cadastro de Usuários</a></li>
-        <li><a href="pesquisausuario.php">Pesquisa de Usuários</a></li>
-        <li><a href="alterarusuario.php">Alterar/Excluir Usuários</a></li>
+        <li><a href="cadastroidoso.php">Cadastrar Idoso</a></li>
+        <li><a href="cadastroresponsavel.php">Cadastrar Responsável pelo Idoso</a></li>
+        <li><a href="pesquisaidoso.php">Listar Idosos cadastros</a></li>
     </ul>
 </body>
 </html>
